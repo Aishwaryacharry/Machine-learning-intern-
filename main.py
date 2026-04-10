@@ -1,4 +1,4 @@
-# -------- Hardcoded Knowledge Base (No JSON) --------
+# -------- Hardcoded Knowledge Base --------
 data = {
     "pricing": {
         "basic": {
@@ -65,6 +65,12 @@ def chat():
 
     while True:
         user = input("\nUser: ")
+
+        # ✅ EXIT OPTION (already added)
+        if user.lower() in ["exit", "quit", "bye"]:
+            print("Agent: Thank you! Have a great day 😊")
+            break
+
         intent = detect_intent(user)
 
         if intent == "greeting":
