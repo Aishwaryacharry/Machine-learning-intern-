@@ -1,26 +1,19 @@
-import json
-
-# -------- Load knowledge base (RAG) --------
-try:
-    with open("data.json", "r") as f:
-        data = json.load(f)
-except FileNotFoundError:
-    print("❌ Error: data.json file not found!")
-    data = {
-        "pricing": {
-            "basic": {
-                "price": "₹0",
-                "videos": "5/month",
-                "resolution": "720p"
-            },
-            "pro": {
-                "price": "₹499",
-                "videos": "Unlimited",
-                "resolution": "1080p",
-                "features": "AI Editing"
-            }
+# -------- Hardcoded Knowledge Base (No JSON) --------
+data = {
+    "pricing": {
+        "basic": {
+            "price": "₹0",
+            "videos": "5/month",
+            "resolution": "720p"
+        },
+        "pro": {
+            "price": "₹499",
+            "videos": "Unlimited",
+            "resolution": "1080p",
+            "features": "AI Editing"
         }
     }
+}
 
 # -------- Intent Detection --------
 def detect_intent(user_input):
@@ -42,15 +35,15 @@ def get_pricing():
 
     return f"""
 📦 Basic Plan:
-- Price: {basic.get('price', 'N/A')}
-- Videos: {basic.get('videos', 'N/A')}
-- Resolution: {basic.get('resolution', 'N/A')}
+- Price: {basic['price']}
+- Videos: {basic['videos']}
+- Resolution: {basic['resolution']}
 
 🚀 Pro Plan:
-- Price: {pro.get('price', 'N/A')}
-- Videos: {pro.get('videos', 'N/A')}
-- Resolution: {pro.get('resolution', 'N/A')}
-- Feature: {pro.get('features', 'Not Available')}
+- Price: {pro['price']}
+- Videos: {pro['videos']}
+- Resolution: {pro['resolution']}
+- Feature: {pro['features']}
 """
 
 # -------- Lead Capture Tool --------
